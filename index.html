@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>점심 메뉴 추천</title>
+    <style>
+        *{margin:0; padding:0;}
+        .container{
+            width: 720px;
+            height: 100vh;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .title {font-size: 32px;  }
+        .menu-title{font-size: 32px;}
+        .menu-img{
+            width: 360px;
+            height: 240px;
+            border-radius: 20px;
+            box-shadow: 0 5px 5px rgba(0,0,0,0.2);
+
+        }
+        #btn{
+            width: 360px;
+            height: 60px;
+            font-size: 20px;
+            border: none;
+            background-color: royalblue;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        #btn:hover {
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+        }
+        #btn:active{
+            box-shadow: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">오늘 점심은?</h1>
+        <img id="img" src="./img/햄버거.jpg" alt="" class="menu-img">
+        <h3 id="menu" class="menu-title">메뉴이름</h3>
+        <button id="btn" onclick="random()">랜덤 추천</button>
+    </div>
+
+    <script>
+        function random()   {
+            //alert("버튼 클릭!")
+            // 1~20 사이의 랜덤 수 뽑기
+            const random = Math.floor(Math.random() * 20)
+            const menus =[
+                {name: "샌드위치", img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_wV-yypP0jqcdAx1ITMBqlGDwo0rbX7GC6w&s"},
+                {name: "떡볶이", img:"https://www.norangtongdak.co.kr/pds/product/49_1?1733368668"},
+                {name: "마라탕", img:"https://www.maragongbang.com/php/skin/images/brand_maraimg.png"},
+                {name: "돼지국밥", img:"https://www.pigpeople.net/data/photos/20170416/art_14927036061773_f148b7.png"},
+                {name: "햄버거", img:"https://m.health.chosun.com/site/data/img_dir/2024/04/19/2024041901914_0.jpg"},
+                {name: "냉면", img:"https://www.hyundaigreenfood.com/brand/Contents/images/hansol/img_noodle2.png"},
+                {name: "샐러드", img:"https://i.namu.wiki/i/_cLeYQStb5Xf8h6vC4ZtRoGFvsF1-rb9wqUMJ9pS510fYeJCGOnh-CQ0A0n9YNHbZ5Roi4WX3NB5RTPdYmhJyg.webp"},
+                {name: "라면", img:"https://i.namu.wiki/i/2mrBrfSDXbBJHLjgyycsAhB0qLvjSZbvswmGtVTAupaEfuQ8Xuzp8wJiXyeDTsqz7blqGRYSjW5mbo1Wc4GP_w.webp"},
+                {name: "김밥", img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq0NvEvUVhM407fQyKVWGknTvFVRF-NxIeNg&s"},
+                {name: "돈까스", img:"https://thingool123.godohosting.com/data/goods/21/07/28/1000021648/1000021648_detail_028.jpg"},
+                {name: "초밥", img:"https://rimage.gnst.jp/livejapan.com/public/article/detail/a/00/00/a0000370/img/basic/a0000370_main.jpg"},
+                {name: "치킨", img:"https://i.namu.wiki/i/YVm0x8WHfLBtSyejD01_GTV1ITfWOJ-XODZzVTQPr386JsiBaz6Ucl1tKKxZmHiYStf_sXZBmK7AEXkEA18Tsg.webp"},
+                {name: "피자", img:"https://i.namu.wiki/i/umI-heVYVS9miQNqXM13FRUOHHL4l1nzsZgN9XRLFG7nI_7Dyf-Myr6HmiWf9Qd7SAZQz3WYSQHPXXtGAwLTag.webp"},
+                {name: "짜장면", img:"https://m.health.chosun.com/site/data/img_dir/2024/10/07/2024100701663_0.jpg"},
+                {name: "탕수육", img:"https://i.namu.wiki/i/NSZu9w4DRwEPOCgPSzvs4sAZlxfMBoxZLCZQgM_O4wRH8jN0guRfBiLURu-Tno5p-Q2aw5e5gy9gLJsnYKlq8Q.webp"},
+                {name: "파스타", img:"https://static.wtable.co.kr/image/production/service/recipe/1767/f55d5c26-330d-46e4-90cd-7579da839914.jpg?size=800x800"},
+                {name: "스테이크", img:"https://i.namu.wiki/i/8HjXHmgc7e_5KZVmId552aTeMjiaDhyamd_XO9WUzD0AIG9jK4c6ULrJrec8MZMFiFm8tNO6wbr6sNGJkzbFJw.webp"},
+                {name: "설렁탕", img:"https://m.bonif.co.kr/assets/mobile/front/images/brand/tang-cont1.png"},
+                {name: "갈비탕", img:"https://image.8dogam.com/resized/product/asset/v1/upload/3122c57983574356b95461193393610a.jpeg?type=big&res=3x&ext=jpg"},
+                {name: "규카츠", img:"https://i.namu.wiki/i/tLMOeIY-6_lUx1LM3NZrzlvkPDdZfkP67-hxSWogWFRySywC2_9yDL6eYIjvoLMhFbAH2OAg71V9215okaZRDg.webp"},
+            ]
+
+            //필요한 요소 : 이미지, 메뉴이름, 버튼
+            const img = document.getElementById("img")
+            const menu = document.getElementById("menu")
+            const btn = document.getElementById("btn")
+
+            //버튼 잠금
+            btn.disabled = true
+            btn.style.opacity = 0.5
+
+            // 이미지 바꾸는 효과
+            let rolling = null
+            rolling = setInterval(() => {
+                const r = Math.floor(Math.random() * menus.length)
+                const randomMenu = menus[r]
+                img.src = randomMenu.img
+                menu.textContent = randomMenu.name
+            }, 50)
+
+            // 3초 뒤 추천메뉴 멈춤
+            setTimeout(() => {
+                clearInterval(rolling) //이미지 바꾸기 멈춤
+                //추천 메뉴 선택
+                const pickMenu = menus[random]
+                img.src = pickMenu.img
+                menu.textContent = pickMenu.name
+
+                //버튼 잠금 해제
+                btn.disabled = false
+                btn.style.opacity = 1
+            },3000)
+        }
+    </script>
+    
+</body>
+</html>
